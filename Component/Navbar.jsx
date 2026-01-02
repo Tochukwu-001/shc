@@ -16,11 +16,12 @@ const Navbar = () => {
                             <img
                             src="/Shc.png"
                             alt="SaRel Logo" 
-                            className="h-20 w-auto" style={{ imageRendering: 'crisp-edges'}} />
+                            className="h-44 w-42 object-contain" style={{ imageRendering: 'crisp-edges',
+                          filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.15))' }} />
                          </a>
                     </div>
                     {/* Desktop Navigation Links - Hidden on mobile, shows on tablets+ */}
-                    <div className="hidden md:flex items-center space-x-8">
+                    <div className="hidden md:flex space-x-8 ml-auto">
                         <a href="/" className="text-gray-700 hover:text-green-700 transition-colors font-medium text-base"> Home </a>
                         <a href="/products" className="text-gray-700 hover:text-green-700 transition-colors font-medium text-base"> Products </a>
                         <a href="/about" className="text-gray-700 hover:text-green-700 transition-colors font-medium text-base"> About </a>
