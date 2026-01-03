@@ -66,14 +66,9 @@ const Page = () => {
   return (
    <main className="min-h-dvh bg-white font-sans">
    {/* Hero section */}
-   <section className="relative min-h-screen flex items-center justify-center bg-linear-to-br from-amber-50 via-emerald-50 to-teal-50 px-6 py-20">
+   <section className="relative min-h-screen flex items-center justify-center bg-teal-50 px-6 py-20">
     <div className="max-w-4xl mx-auto text-center z-10">
-      <div className="mb-8">
-        <div className="inline-block mb-6">
-          <div className="w-24 h-24 mx-auto bg-linear-to-br from-emerald-600 to-teal-600 rounded-full flex items-center justify-center shadow-lg">
-            <span className="text-5xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>S</span>
-          </div>
-        </div>
+      <div className="mb-2">
         <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}> SaRel Holistic Care </h1>
 
         <p className="text-3xl md:text-4xl font-light text-emerald-700 mb-8" style={{ fontFamily: 'Poppins, sans-serif' }}> Beauty Beyond Boundaries </p>
@@ -155,10 +150,10 @@ const Page = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {products.map((product, index) => (
-              <div key={index} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              <div key={index} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl">
                 <div className="relative h-80 overflow-hidden">
                   <img src={product.image} alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-6">
@@ -166,7 +161,7 @@ const Page = () => {
                   <p className="text-gray-600 mb-6 leading-relaxed">
                     {product.description}
                   </p>
-                  <button className="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
+                  <button className="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-3 rounded-full font-semibold">
                     Shop {product.name}
                   </button>
                 </div>
@@ -177,8 +172,8 @@ const Page = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 bg-linear-to-br from-emerald-700 to-teal-600">
-        <div className="max-w-4xl mx-auto text-center text-white">
+      <section className="py-20 px-6 bg-teal-100">
+        <div className="max-w-4xl mx-auto text-center text-gray-700">
           <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: 'Poppins, sans-serif' }}>
             Transform your Hair Care Ritual
           </h2>
