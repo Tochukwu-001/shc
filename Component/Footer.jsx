@@ -1,6 +1,6 @@
 "use client";
 import React from 'react'
-import { FaFacebookF, FaInstagram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 
 const Footer = () => {
     return (
@@ -122,16 +122,6 @@ const Footer = () => {
                 aria-label="Instagram"
               >
                 <FaInstagram size={22} />
-              </a>
-              
-              <a 
-                href="https://tiktok.com/@sarelcare" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-teal-600 bg-opacity-20 hover:bg-opacity-30 p-3 rounded-full transition-all duration-300 hover:scale-110"
-                aria-label="TikTok"
-              >
-                <FaTiktok size={22} />
               </a>
               
               <a 
