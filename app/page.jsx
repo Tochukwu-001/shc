@@ -7,10 +7,10 @@ const Page = () => {
 
   // Hero images for carousel 
   const heroImages = [
-    '/a1.jpg',
-    '/a2.jpg',
+    '/a8.jpg',
+    '/b1.jpg',
     '/a3.jpg',
-    '/a4.jpg'
+    '/a5.jpg'
   ];
    
   // Auto-rotate carousel
@@ -34,27 +34,32 @@ const Page = () => {
     {
       name: 'Hair Oil',
       description: 'Nourishing blend that strengthens, protects, and keeps your hair healthy with every use.',
-      image: "/a6.jpg"
+      image: "/ho.jpg"
     },
     {
       name: 'Tea Rinse',
       description: 'Herbal infusion that cleanses, soothes the scalp, and promotes natural shine and vitality.',
-      image: "/a6.jpg"
+      image: "/tea.jpg"
     },
     {
       name: 'Shampoo',
       description: 'Gentle cleansing formula that purifies without stripping natural oils for healthy hair.',
-      image: "/a6.jpg"
+      image: "/sha.jpg"
     },
     {
       name: 'Deep Conditioner',
       description: 'Intensive treatment that repairs, restores moisture, and revitalizies damaged strands.',
-      image: "/a6.jpg"
+      image: "/deep.jpg"
     },
     {
       name: 'Hair Butter',
       description: 'Rich moisturizing butter that nourishes, defines, and protects your natural texture.',
-      image: '/a6.jpg'
+      image: '/hb.jpg'
+    },
+    {
+      name: 'Leave-In Conditioner',
+      description: 'Lightweight formula that hydrates, detangles, and keeps hair soft and manageable all day.',
+      image: '/livin.jpg'
     }
   ];
 
@@ -133,6 +138,56 @@ const Page = () => {
               />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Products Section */}
+      <section className="py-24 px-6 bg-linear-to-br from-white to-emerald-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              Our Collection
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Premium holistic hair care products crafted with nature's finest ingredients
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product, index) => (
+              <div key={index} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                <div className="relative h-80 overflow-hidden">
+                  <img src={product.image} alt={product.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Poppins, sans-serif' }}> {product.name} </h3>
+                  <p className="text-gray-600 mb-6 leading-relaxed">
+                    {product.description}
+                  </p>
+                  <button className="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
+                    Shop {product.name}
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 px-6 bg-linear-to-br from-emerald-700 to-teal-600">
+        <div className="max-w-4xl mx-auto text-center text-white">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            Transform your Hair Care Ritual
+          </h2>
+          <p className="text-xl mb-10 opacity-90">
+            Join thousands who have discovered the power of holistic hair care
+          </p>
+          <button className="bg-white text-emerald-700 hover:bg-gray-100 px-10 py-4 rounded-full text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-xl">
+            Start Your Journey
+          </button>
         </div>
       </section>
    </main>
