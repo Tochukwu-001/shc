@@ -9,7 +9,6 @@ const Navbar = () => {
         <nav className="bg-white shadow-md sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
-
                     {/* Logo section */}
                     <div className="flex items-center">
                         <a href="/" className="flex items-center">
@@ -22,15 +21,13 @@ const Navbar = () => {
                     </div>
                      {/* Right Section */}
                     <div className="flex items-center pr-4 sm:pr-6 lg:pr-8">
-
                     {/* Desktop Navigation Links - Hidden on mobile, shows on tablets+ */}
                     <div className="hidden md:flex space-x-8 items-center">
                         <a href="/" className="text-gray-700 hover:text-green-700 transition-colors font-medium text-base"> Home </a>
                         <a href="/products" className="text-gray-700 hover:text-green-700 transition-colors font-medium text-base"> Products </a>
                         <a href="/about" className="text-gray-700 hover:text-green-700 transition-colors font-medium text-base"> About </a>
                         <a href="/contact" className="text-gray-700 hover:text-green-700 transition-colors font-medium text-base"> Contact </a>
-                    </div>
-                    
+                    </div>    
                         {/* Mobile Menu Toggle Button - Only shows on mobile */}
                         <button className="md:hidden text-gray-700 p-2"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
