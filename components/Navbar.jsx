@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { HiOutlineMenuAlt3, HiX } from 'react-icons/hi';
+import { Theme } from "./Styles";
 
 const Navbar = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -48,7 +49,7 @@ const Navbar = () => {
                                     navLinks.map((item, i) => (
                                         <Link key={i} href={item.url} className="text-gray-700 font-medium text-base relative group hover:text-[#00897B]">
                                             {item.label}
-                                            <span className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full bg-[#00897B]"></span>
+                                            <span style={{ backgroundColor: Theme.lightCyan }} className="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 w-0 group-hover:w-full"></span>
                                         </Link>
                                     ))
                                 }

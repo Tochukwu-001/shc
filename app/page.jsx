@@ -1,4 +1,5 @@
 "use client";
+import { Theme } from "@/components/Styles";
 import React, { useState, useEffect } from "react";
 import { FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
 
@@ -66,23 +67,25 @@ const Page = () => {
   return (
     <main className="min-h-dvh bg-white">
       {/* Hero section */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 py-20 bg-[url('/a3.jpg')] bg-no-repeat bg-center bg-cover">
-        {/* <div className="max-w-4xl mx-auto text-center z-10">
+      <section className="min-h-screen flex items-center justify-center bg-[url('/bg.jpg')] bg-no-repeat bg-center bg-cover">
+      <blockquote className="min-h-screen w-full p-10 bg-[#00897B]/30">
+        <div className="max-w-4xl mx-auto text-center z-10">
           <div className="mb-2">
-            <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-4"> SaRel Holistic Care </h1>
+            <h1 className="text-6xl md:text-7xl font-bold text-gray-100 mb-4"> SaRel Holistic Care </h1>
 
-            <p className="text-3xl md:text-4xl font-light text-emerald-700 mb-8"> Beauty Beyond Boundaries </p>
+            <p className="text-3xl md:text-4xl font-light text-gray-200 mb-8"> Beauty Beyond Boundaries </p>
           </div>
 
-          <p className="text-xl md:text-2xl text-gray-700 mb-12 leading-relaxed max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-200 mb-12 leading-relaxed max-w-3xl mx-auto">
             Nurture your crown naturally with holistic hair care rooted in nature's wellness.
             Experience elegance in every strand with our premium formulations.
           </p>
 
-          <button className="bg-emerald-700 hover:bg-emerald-800 text-white px-10 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-xl">
+          <button className="text-white px-10 py-4 rounded-full text-lg font-semibold border">
             Discover Our Collection
           </button>
-        </div> */}
+        </div>
+      </blockquote>
         {/* Decorative elements */}
         {/* <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-200 rounded-full opacity-20 blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-40 h-40 bg-teal-200 rounded-full opacity-20 blur-3xl"></div> */}
