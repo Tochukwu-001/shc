@@ -1,10 +1,11 @@
 "use client";
 import React from 'react'
 import { FaFacebookF, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import { Theme } from './Styles';
 
 const Footer = () => {
   return (
-    <footer className='bg-linear-to-br from-green-800 to-green-900 text-white'>
+    <footer style={{backgroundColor: Theme.baseGreen}} className='text-white'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
         {/* Main Footer Grid - Responsive layout */}
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12'>
