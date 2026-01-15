@@ -3,9 +3,11 @@ import { Theme } from "@/components/Styles";
 import React, { useState, useEffect } from "react";
 import { FaLeaf, FaHeart, FaUsers, FaHandshake } from "react-icons/fa";
 import { TbArrowBadgeRightFilled, TbArrowBadgeLeftFilled } from "react-icons/tb";
+import { FaStar } from "react-icons/fa";
 
 const Page = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentReview, setCurrentReview] = useState(0);
 
   // Hero images for carousel 
   const heroImages = [
@@ -13,9 +15,7 @@ const Page = () => {
     '/full.jpg',
     '/11.jpg',
     '/14.jpg'
-    
   ];
-
   // Auto-rotate carousel
   useEffect(() => {
     const timer = setInterval(() => {
@@ -50,20 +50,76 @@ const Page = () => {
       image: "/deep.jpg",
       price: "N10,000"
     },
-    //  {
-    //   name: 'Hair Oil',
-    //   description: 'Nourishing blend that strengthens, protects, and keeps your hair healthy with every use.',
-    //   image: "/ho.jpg",
-    //   price: "N10,000"
-    // },
-    // {
-    //   name: 'Leave-In Conditioner',
-    //   description: 'Lightweight formula that hydrates, detangles, and keeps hair soft and manageable all day.',
-    //   image: '/livin.jpg',
-    //   price: "12,000"
-    // }
   ];
 
+   const reviews = [
+    {
+      text: "Best hair products I've ever used! My hair has never felt so healthy.",
+      author: "Amara Johnson",
+      rating: 5
+    },
+    {
+      text: "The tea rinse is amazing. My scalp feels so refreshed!",
+      author: "Kwame Osei",
+      rating: 5
+    },
+    {
+      text: "Love the natural ingredients. Great for my daughter's hair too.",
+      author: "Zuri Williams",
+      rating: 5
+    },
+    {
+      text: "Finally found products that work for my hair type. Highly recommend!",
+      author: "Jamal Brown",
+      rating: 5
+    },
+    {
+      text: "The hair butter is a game changer. So moisturizing!",
+      author: "Nia Davis",
+      rating: 5
+    },
+    {
+      text: "The deep conditioner restored my damaged hair. Incredible results!",
+      author: "Malik Thompson",
+      rating: 5
+    },
+    {
+      text: "These formulations are truly holistic. I feel the wellness in every strand.",
+      author: "Ayanna Clarke",
+      rating: 5
+    },
+    {
+      text: "The hair oil strengthened my hair and gave it beautiful shine.",
+      author: "Kofi Mensah",
+      rating: 5
+    }
+  ];
+    // Auto-rotate reviews every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentReview((prev) => (prev + 1) % reviews.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [reviews.length]);
+
+  const nextReview = () => {
+    setCurrentReview((prev) => (prev + 1) % reviews.length);
+  };
+  const prevReview = () => {
+    setCurrentReview((prev) => (prev - 1 + reviews.length) % reviews.length);
+  };
+
+  // Get 3 reviews to display (current and next 2)
+  const getVisibleReviews = () => {
+    const visible = [];
+    for (let i = 0; i < 3; i++) {
+      visible.push(reviews[(currentReview + i) % reviews.length]);
+    }
+    return visible;
+  };
+  const visibleReviews = getVisibleReviews();
+
+  // Why choose Us options
   const whyChooseUs = [
     {
       icon: <FaLeaf className="w-12 h-12" />,
@@ -87,8 +143,20 @@ const Page = () => {
     }
   ];
 
+  // Holistic Promise
+  const HolisticPromise = [
+    {
+     title: "Personalized Care",
+      description: "Not sure which products are right for you? Book a free consultation with our hair care experts." 
+    },
+    {
+     title: "Global Reach",
+      description: "From local communities to international customers, we deliver wellness to your doorstep." 
+    }
+  ];
+
   return (
-    <main className="min-h-dvh bg-white">
+    <main className="min-h-dvh bg-white w-full">
       {/* Hero section with Image Carousel Background*/}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0">
@@ -155,9 +223,14 @@ const Page = () => {
           </div>
         </div>
       </div>
+      {/* Google Fonts Import */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@700;800;900&family=Poppins:wght@400;500;600;700&display=swap');
+      `}</style>
+    </section>
 
       {/* Slide Indicators (Dots) */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 py-4 bg-linear-to-t from-black/30 to-transparent">
+      <div className="w-full py-6">
       <div className="flex justify-center items-center gap-3">
         {heroImages.map((_, index) => (
           <button
@@ -166,7 +239,7 @@ const Page = () => {
             className={`transition-all duration-300 rounded-full ${
               index === currentSlide 
                 ? 'bg-emerald-700 w-1 h-1 shadow-md' 
-                : 'bg-white/70 w-1.5 h-1.5 hover:bg-white'
+                : 'bg-gray-200 w-1 h-1 hover:bg-gray-300'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
@@ -174,59 +247,10 @@ const Page = () => {
         </div>
       </div>
 
-      {/* Google Fonts Import */}
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@700;800;900&family=Poppins:wght@400;500;600;700&display=swap');
-      `}</style>
-    </section>
-
-       {/* NEW: Why Choose SaRel Section */}
-      <section className="py-18 px-6 bg-linear-to-b from-white to-emerald-50">
+     {/* Products Section */}
+      <section className="py-20 px-10 bg-linear-to-br from-white to-emerald-50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-              Why Choose SaRel?
-            </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Where elegance in every strand comes alive through holistic care
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
-            {whyChooseUs.map((item, index) => (
-              <div
-                key={index}
-                className="group relative bg-white rounded-2xl p-10 shadow-xl hover:shadow-2xl border border-emerald-100 hover:bg-teal-100 transition-all duration-300 transform">
-                {/* Icon circle with gradient */}
-                <div className="absolute -top-8 left-10">
-                <div style={{ backgroundColor:Theme.lightCyan}} className="w-15 h-15 flex items-center justify-center rounded-full text-white group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  {item.icon}
-                </div>
-                </div>
-                <div className="mt-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
-                  {item.title}
-                </h3>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-              {/* Decorative gradient bar */}
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-emerald-700 to-emerald-800 rounded-b-3xl transform scale-x-0 group-hover:scala-x-100 transition-transform duration-300"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Review Section */}
-      <section className="relative h-110 py-20 px-6 bg-linear-to-br from-emerald-700 to-emerald-800 overflow-hidden"></section>
-
-
-      {/* Products Section */}
-      <section className="py-20 px-6 bg-linear-to-br from-white to-emerald-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
+          <div className="text-center mb-24">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
               Best Sellers
             </h2>
@@ -269,6 +293,166 @@ const Page = () => {
       {/* Google Fonts Import */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');`} </style>
+      </section>
+
+       {/* Review Section */}
+      <section className="relative py-18 px-10 bg-linear-to-br from-emerald-700 to-emerald-800 overflow-hidden">
+        {/* Decorative background pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full translate-x-1/2 translate-y-1/2"></div>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 
+            className="text-4xl md:text-5xl font-semibold text-white mb-4"
+            style={{ fontFamily: 'Poppins, sans-serif' }}
+          >
+            150+ Happy Customers
+          </h2>
+          <p className="text-xl text-white/90">
+            See what our customers are saying
+          </p>
+        </div>
+        {/* Reviews Carousel */}
+        <div className="relative">
+          {/* Left Arrow */}
+          <button
+            onClick={prevReview}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-10 bg-white/20 hover:bg-white/30  text-white p-3 rounded-full transition-all duration-300"
+            aria-label="Previous review">
+            <TbArrowBadgeLeftFilled size={28} />
+          </button>
+
+          {/* Reviews Container */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 md:px-0">
+            {visibleReviews.map((review, index) => (
+              <div
+                key={index}
+                className="bg-white/95 rounded-2xl p-6 shadow-xl transform transition-all duration-500">
+                {/* Stars */}
+                <div className="flex gap-1 mb-4">
+                  {[...Array(review.rating)].map((_, i) => (
+                    <FaStar key={i} className="text-amber-400 w-5 h-5" />
+                  ))}
+                </div>
+                {/* Review Text */}
+                <p className="text-gray-700 text-lg mb-6 leading-relaxed italic">
+                  "{review.text}"
+                </p>
+                {/* Author */}
+                <p 
+                  className="text-gray-900 font-semibold text-lg"
+                  style={{ fontFamily: 'Poppins, sans-serif' }} >
+                  — {review.author}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Right Arrow */}
+          <button
+            onClick={nextReview}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-10 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300"
+            aria-label="Next review" >
+            <TbArrowBadgeRightFilled size={28} />
+          </button>
+        </div>
+      </div>
+
+      {/* Google Fonts Import */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+      `}</style>
+      </section>
+
+
+       {/* NEW: Why Choose SaRel Section */}
+      <section className="py-20 px-10 bg-linear-to-b from-white to-emerald-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-26">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
+              Why Choose SaRel?
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Where elegance in every strand comes alive through holistic care
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+            {whyChooseUs.map((item, index) => (
+              <div
+                key={index}
+                className="group relative bg-white rounded-2xl p-10 shadow-xl hover:shadow-2xl border border-emerald-100 hover:bg-teal-100 transition-all duration-300 transform">
+                {/* Icon circle with gradient */}
+                <div className="absolute -top-8 left-10">
+                <div style={{ backgroundColor:Theme.lightCyan}} className="w-15 h-15 flex items-center justify-center rounded-full text-white group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  {item.icon}
+                </div>
+                </div>
+                <div className="mt-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                  {item.title}
+                </h3>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+              {/* Decorative gradient bar */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-emerald-700 to-emerald-800 rounded-b-3xl transform scale-x-0 group-hover:scala-x-100 transition-transform duration-300"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Holistic Promise */}
+      <section style={{ backgroundColor: Theme.darkYellow}}className="relative py-18 px-10 overflow-hidden">
+        {/* Decorative background pattern */}
+      <div className="absolute inset-0 opacity-10"></div>
+      <div className="relative max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 
+            className="text-4xl md:text-5xl font-semibold text-white mb-4"
+            style={{ fontFamily: 'Poppins, sans-serif' }}>
+            Our Holistic Promise
+          </h2>
+          <p className="text-xl text-white/90">
+            At SaRel Holistic Care, we believe that beautiful hair starts with wellness from within. Our premium formulations combine time-honored natural remedies with modern hair science to deliver results you can see and feel. Every product is designed to nourish, nurture, and care for your unique crown.
+          </p>
+        </div>
+        {/* Promise Carousel */}
+        <div className="relative">
+
+          {/* Promise Container */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-6 md:px-2">
+           {HolisticPromise.map((item, index) => (
+              <div
+                key={index}
+                className="group relative bg-white rounded-2xl p-14 shadow-xl hover:shadow-2xl">
+                <div className="mt-6">
+                <h3 className="text-2xl font-bold text-teal-700 mb-5" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                  {item.title}
+                </h3>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+              {/* Decorative gradient bar */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-emerald-700 to-emerald-800 rounded-b-3xl transform scale-x-0 group-hover:scala-x-100 transition-transform duration-300"></div>
+              </div>
+            ))}
+          </div>
+          </div>
+          </div>
+
+      {/* Google Fonts Import */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+      `}</style>
       </section>
 
       {/* CTA Section */}
