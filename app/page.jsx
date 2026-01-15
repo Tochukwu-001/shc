@@ -432,7 +432,7 @@ const Page = () => {
            {HolisticPromise.map((item, index) => (
               <div
                 key={index}
-                className="group relative bg-white rounded-2xl p-14 shadow-xl hover:shadow-2xl">
+                className="group relative bg-white rounded-2xl p-10 shadow-xl hover:shadow-2xl">
                 <div className="mt-6">
                 <h3 className="text-2xl font-bold text-teal-700 mb-5" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   {item.title}
