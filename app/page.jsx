@@ -2,12 +2,13 @@
 import { Theme } from "@/components/Styles";
 import React, { useState, useEffect } from "react";
 import { FaLeaf, FaHeart, FaUsers, FaHandshake } from "react-icons/fa";
-import { TbArrowBadgeRightFilled, TbArrowBadgeLeftFilled } from "react-icons/tb";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { FaStar } from "react-icons/fa";
 
 const Page = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentReview, setCurrentReview] = useState(0);
+  const [direction, setDirection] = useState('next');
 
   // Hero images for carousel 
   const heroImages = [
@@ -97,16 +98,22 @@ const Page = () => {
     // Auto-rotate reviews every 5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentReview((prev) => (prev + 1) % reviews.length);
+      handleNext();
     }, 5000);
     return () => clearInterval(timer);
-  }, [reviews.length]);
+  }, [currentReview]);
 
-  const nextReview = () => {
-    setCurrentReview((prev) => (prev + 1) % reviews.length);
+  const handleNext = () => {
+    setDirection('next');
+    setTimeout(() => {
+      setCurrentReview((prev) => (prev + 1) % reviews.length);
+    }, 50);
   };
-  const prevReview = () => {
-    setCurrentReview((prev) => (prev - 1 + reviews.length) % reviews.length);
+  const handlePrev = () => {
+    setDirection('prev');
+    setTimeout(() => {
+       setCurrentReview((prev) => (prev - 1 + reviews.length) % reviews.length);
+    }, 50);
   };
 
   // Get 3 reviews to display (current and next 2)
@@ -190,7 +197,7 @@ const Page = () => {
           </h1>
           {/* Subtitle - Bold Sans-serif */}
           <p 
-            className="text-3xl md:text-4xl lg:text-5xl font-light text-gray-300 mb-8"
+            className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-8"
             style={{ 
               fontFamily: "'Montserrat', 'Arial Black', sans-serif",
               letterSpacing: '0.02em',
@@ -200,7 +207,7 @@ const Page = () => {
           </p>
           {/* Description Text */}
           <p 
-            className="text-lg md:text-xl lg:text-2xl text-gray-400 mb-12 leading-relaxed max-w-3xl mx-auto"
+            className="text-lg md:text-xl lg:text-2xl text-white font-light mb-12 leading-relaxed max-w-3xl mx-auto"
             style={{ 
               fontFamily: "'Poppins', 'Helvetica', sans-serif",
               textShadow: '1px 1px 3px rgba(0,0,0,0.5)'
@@ -211,12 +218,12 @@ const Page = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button 
-              className="bg-emerald-700 hover:bg-emerald-800 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
+              className="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 shadow-xl transform"
               style={{ fontFamily: "'Poppins', sans-serif" }} >
               Discover Our Collection
             </button>
             <button 
-              className="bg-white/20 hover:bg-white/30 text-white px-8 py-3 rounded-full text-lg font-bold transition-all duration-300"
+              className="w-full sm:w-auto bg-white/20 hover:bg-white/30 text-white px-8 py-3 rounded-full text-lg font-bold transition-all duration-300"
               style={{ fontFamily: "'Poppins', sans-serif" }} >
               Book Consultation
             </button>
@@ -238,8 +245,8 @@ const Page = () => {
             onClick={() => setCurrentSlide(index)}
             className={`transition-all duration-300 rounded-full ${
               index === currentSlide 
-                ? 'bg-emerald-700 w-1 h-1 shadow-md' 
-                : 'bg-gray-200 w-1 h-1 hover:bg-gray-300'
+                ? 'bg-emerald-700 w-3 h-3 shadow-md' 
+                : 'bg-gray-200 w-2.5 h-2.5 hover:bg-gray-300'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
@@ -248,23 +255,24 @@ const Page = () => {
       </div>
 
      {/* Products Section */}
-      <section className="py-20 px-10 bg-linear-to-br from-white to-emerald-50">
+      <section className="py-12 md:py-20 px-6 md:px-10 bg-linear-to-br from-white to-emerald-50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-24">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold text-emerald-700 mb-4" style={{ fontFamily: "'Great Vibes', 'Brush Script MT', cursive" }}>
               Best Sellers
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
               Premium holistic hair care products crafted with nature's finest ingredients
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mb-8 md:mb-12">
             {products.map((product, index) => (
-              <div key={index} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl">
-                <div className="relative h-90 overflow-hidden">
+              <div key={index} className="group bg-white rounded-2xl overflow-hidden">
+                <div className="relative h-80 md:h-90 overflow-hidden">
                   <img src={product.image} alt={product.name}
                     className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-linear-to-t from-black/10 via-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-3">
@@ -284,96 +292,123 @@ const Page = () => {
         <div className="text-center">
           <a 
             href="/products" 
-            className="inline-block bg-emerald-700 hover:bg-emerald-800 text-white px-10 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
+            className="inline-block w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 shadow-xl transform"
             style={{ fontFamily: 'Poppins, sans-serif' }} >
             View All Products
           </a>
         </div>
       </div>
-      {/* Google Fonts Import */}
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');`} </style>
       </section>
 
        {/* Review Section */}
-      <section className="relative py-18 px-10 bg-linear-to-br from-emerald-700 to-emerald-800 overflow-hidden">
+      <section className="relative py-12 md:py-20 px-4 md:px-6 bg-linear-to-br from-emerald-700 to-emerald-800 overflow-hidden">
         {/* Decorative background pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full translate-x-1/2 translate-y-1/2"></div>
       </div>
-
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-12">
           <h2 
-            className="text-4xl md:text-5xl font-semibold text-white mb-4"
-            style={{ fontFamily: 'Poppins, sans-serif' }}
-          >
+            className="text-4xl md:text-6xl font-bold text-amber-500 mb-4 px-4"
+            style={{ fontFamily: "'Great Vibes', 'Brush Script MT', cursive" }} >
             150+ Happy Customers
           </h2>
-          <p className="text-xl text-white/90">
+          <p className="text-lg md:text-xl text-white/90">
             See what our customers are saying
           </p>
         </div>
         {/* Reviews Carousel */}
-        <div className="relative">
+        <div className="relative px-8 md:px-16">
           {/* Left Arrow */}
           <button
-            onClick={prevReview}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 z-10 bg-white/20 hover:bg-white/30  text-white p-3 rounded-full transition-all duration-300"
+            onClick={handlePrev}
+            className="absolute left-0 md:left-2 top-1/2 -translate-y-1/2 z-20 bg-white/30 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all duration-300 shadow-lg"
             aria-label="Previous review">
-            <TbArrowBadgeLeftFilled size={28} />
+            <FiChevronLeft size={24} className="md:w-7 md:h-7" />
           </button>
-
-          {/* Reviews Container */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 md:px-0">
-            {visibleReviews.map((review, index) => (
-              <div
-                key={index}
-                className="bg-white/95 rounded-2xl p-6 shadow-xl transform transition-all duration-500">
-                {/* Stars */}
-                <div className="flex gap-1 mb-4">
-                  {[...Array(review.rating)].map((_, i) => (
-                    <FaStar key={i} className="text-amber-400 w-5 h-5" />
-                  ))}
+          {/* Reviews Container with sliding animation */}
+          <div className="overflow-hidden">
+            <div 
+              className={`grid grid-cols-1 md:grid-cols-3 gap-6 transition-all duration-700 ease-in-out ${
+                direction === 'next' ? 'animate-slideInRight' : 'animate-slideInLeft'}`}
+              key={currentReview}>
+              {visibleReviews.map((review, index) => (
+                <div
+                  key={index}
+                  className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-xl transform transition-all duration-300">
+                  {/* Stars */}
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <FaStar key={i} className="text-amber-500 w-4 h-4 md:w-5 md:h-5" />
+                    ))}
+                  </div>
+                  {/* Review Text */}
+                  <p className="text-gray-700 text-base md:text-lg mb-6 leading-relaxed italic min-h-20">
+                    "{review.text}"
+                  </p>
+                  {/* Author */}
+                  <p 
+                    className="text-gray-900 font-semibold text-base md:text-lg"
+                    style={{ fontFamily: 'Poppins, sans-serif' }}>
+                    — {review.author}
+                  </p>
                 </div>
-                {/* Review Text */}
-                <p className="text-gray-700 text-lg mb-6 leading-relaxed italic">
-                  "{review.text}"
-                </p>
-                {/* Author */}
-                <p 
-                  className="text-gray-900 font-semibold text-lg"
-                  style={{ fontFamily: 'Poppins, sans-serif' }} >
-                  — {review.author}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-
           {/* Right Arrow */}
           <button
-            onClick={nextReview}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 z-10 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition-all duration-300"
-            aria-label="Next review" >
-            <TbArrowBadgeRightFilled size={28} />
+            onClick={handleNext}
+            className="absolute right-0 md:right-2 top-1/2 -translate-y-1/2 z-20 bg-white/30 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all duration-300 shadow-lg"
+            aria-label="Next review">
+            <FiChevronRight size={24} className="md:w-7 md:h-7" />
           </button>
         </div>
       </div>
-
-      {/* Google Fonts Import */}
+      {/* Google Fonts and Animations */}
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        
+        @keyframes slideInRight {
+          0% {
+            transform: translateX(70%);
+            opacity: 0;
+          }
+          100% {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        
+        @keyframes slideInLeft {
+          0% {
+            transform: translateX(-100%);
+            opacity: 0;
+          }
+          100% {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        
+        .animate-slideInRight {
+          animation: slideInRight 0.7s ease-in-out forwards;
+        }
+        
+        .animate-slideInLeft {
+          animation: slideInLeft 0.7s ease-in-out forwards;
+        }
       `}</style>
       </section>
 
 
        {/* NEW: Why Choose SaRel Section */}
-      <section className="py-20 px-10 bg-linear-to-b from-white to-emerald-50">
+      <section className="py-12 md:py-20 px-6 md:px-10 bg-linear-to-b from-white to-emerald-50">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-26">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold text-emerald-700 mb-4" style={{ fontFamily: "'Great Vibes', 'Brush Script MT', cursive" }}>
               Why Choose SaRel?
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
@@ -381,18 +416,18 @@ const Page = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 mb-8 md:mb-12">
             {whyChooseUs.map((item, index) => (
               <div
                 key={index}
-                className="group relative bg-white rounded-2xl p-10 shadow-xl hover:shadow-2xl border border-emerald-100 hover:bg-teal-100 transition-all duration-300 transform">
+                className="group relative bg-white rounded-2xl p-8 md:p-10 shadow-xl hover:shadow-2xl border border-emerald-100 hover:bg-teal-100 transition-all duration-300 transform">
                 {/* Icon circle with gradient */}
-                <div className="absolute -top-8 left-10">
-                <div style={{ backgroundColor:Theme.lightCyan}} className="w-15 h-15 flex items-center justify-center rounded-full text-white group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <div className="flex justify-center mb-6">
+                <div style={{ backgroundColor:Theme.lightCyan}} className="w-20 h-20 flex items-center justify-center rounded-full text-white group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   {item.icon}
                 </div>
                 </div>
-                <div className="mt-8">
+                <div className="text-center">
                 <h3 className="text-2xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   {item.title}
                 </h3>
@@ -401,7 +436,7 @@ const Page = () => {
                 </p>
               </div>
               {/* Decorative gradient bar */}
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-emerald-700 to-emerald-800 rounded-b-3xl transform scale-x-0 group-hover:scala-x-100 transition-transform duration-300"></div>
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-emerald-700 to-emerald-800 rounded-b-3xl transform scale-x-0 transition-transform duration-300"></div>
               </div>
             ))}
           </div>
@@ -409,30 +444,28 @@ const Page = () => {
       </section>
 
       {/* Our Holistic Promise */}
-      <section style={{ backgroundColor: Theme.darkYellow}}className="relative py-18 px-10 overflow-hidden">
+      <section className="relative py-12 md:py-18 px-6 md:px-10 overflow-hidden bg-linear-to-b from-emerald-700 to-teal-600">
         {/* Decorative background pattern */}
       <div className="absolute inset-0 opacity-10"></div>
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-12">
           <h2 
-            className="text-4xl md:text-5xl font-semibold text-white mb-4"
-            style={{ fontFamily: 'Poppins, sans-serif' }}>
+            className="text-4xl md:text-6xl font-bold text-amber-500 mb-4"
+            style={{ fontFamily: "'Great Vibes', 'Brush Script MT', cursive" }}>
             Our Holistic Promise
           </h2>
-          <p className="text-xl text-white/90">
+          <p className="text-xl md:text-xl text-white/90 leading-relaxed">
             At SaRel Holistic Care, we believe that beautiful hair starts with wellness from within. Our premium formulations combine time-honored natural remedies with modern hair science to deliver results you can see and feel. Every product is designed to nourish, nurture, and care for your unique crown.
           </p>
         </div>
-        {/* Promise Carousel */}
-        <div className="relative">
-
+    
           {/* Promise Container */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-6 md:px-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-0 md:px-2">
            {HolisticPromise.map((item, index) => (
               <div
                 key={index}
-                className="group relative bg-white rounded-2xl p-10 shadow-xl hover:shadow-2xl">
+                className="group relative bg-white rounded-2xl p-8 md:p-10 shadow-xl hover:shadow-2xl">
                 <div className="mt-6">
                 <h3 className="text-2xl font-bold text-teal-700 mb-5" style={{ fontFamily: 'Poppins, sans-serif' }}>
                   {item.title}
@@ -442,10 +475,9 @@ const Page = () => {
                 </p>
               </div>
               {/* Decorative gradient bar */}
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-emerald-700 to-emerald-800 rounded-b-3xl transform scale-x-0 group-hover:scala-x-100 transition-transform duration-300"></div>
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-emerald-700 to-emerald-800 rounded-b-3xl transform scale-x-0 transition-transform duration-300"></div>
               </div>
             ))}
-          </div>
           </div>
           </div>
 
@@ -456,7 +488,7 @@ const Page = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 bg-teal-100">
+      <section className="py-12 md:py-20 px-6 bg-linear-to-b from-teal-600 to-teal-200">
         <div className="max-w-4xl mx-auto text-center text-gray-700">
           <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ fontFamily: 'Poppins, sans-serif' }}>
             Transform your Hair Care Ritual
@@ -464,7 +496,7 @@ const Page = () => {
           <p className="text-xl mb-10 opacity-90">
             Join thousands who have discovered the power of holistic hair care
           </p>
-          <button className="bg-white text-emerald-700 hover:bg-gray-100 px-10 py-4 rounded-full text-lg font-bold transition-all duration-300 transform hover:scale-105 shadow-xl">
+          <button className="w-full sm:w-auto bg-white text-emerald-700 hover:bg-gray-100 px-10 py-4 rounded-full text-lg font-bold transition-all duration-300 transform shadow-xl">
             Start Your Journey
           </button>
         </div>
