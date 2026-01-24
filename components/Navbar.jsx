@@ -14,12 +14,12 @@ const Navbar = () => {
             url: "/"
         },
         {
-            label: "About",
-            url: "/about"
+            label: "Shop",
+            url: "/shop"
         },
         {
-            label: "Products",
-            url: "/products"
+            label: "About",
+            url: "/about"
         },
         {
             label: "Contact",
@@ -62,8 +62,7 @@ const Navbar = () => {
                             <button
                                 className="md:hidden text-gray-700 p-2 z-50 relative"
                                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                                aria-label="Toggle Menu"
-                            >
+                                aria-label="Toggle Menu">
                                 {mobileMenuOpen ? <HiX size={28} /> : <HiOutlineMenuAlt3 size={28} />}
                             </button>
                         </div>
@@ -74,8 +73,7 @@ const Navbar = () => {
                 {mobileMenuOpen && (
                     <div
                         className="md:hidden fixed inset-0"
-                        onClick={() => setMobileMenuOpen(false)}
-                    />
+                        onClick={() => setMobileMenuOpen(false)} />
                 )}
 
                 <div className={`md:hidden fixed top-0 right-0 h-full w-full bg-white shadow-2xl z-40 transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
@@ -86,16 +84,14 @@ const Navbar = () => {
                                 key={i}
                                 href={item.url}
                                 className="text-gray-700 font-medium text-lg hover:text-[#00897B] transition-colors"
-                                onClick={() => setMobileMenuOpen(false)}
-                            >
+                                onClick={() => setMobileMenuOpen(false)}>
                                 {item.label}
                             </Link>
                         ))}
                         <Link
                             href={"/book"}
                             className="border px-5 py-2 border-gray-500 text-gray-700 text-base font-medium hover:border-[#00897B] hover:text-[#00897B] transition-all duration-300 rounded-full text-center mt-4"
-                            onClick={() => setMobileMenuOpen(false)}
-                        >
+                            onClick={() => setMobileMenuOpen(false)}>
                             Book Consultation
                         </Link>
                     </div>
