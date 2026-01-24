@@ -14,7 +14,7 @@ const Footer = () => {
           <div className='space-y-8'>
             {/* Logo & description */}
             <div>
-              <img src='/logo.jpeg' alt='SaRel Logo' className='h-28 w-auto mb-4' />
+              <img src='/logo2.png' alt='SaRel Logo' className='h-28 w-auto mb-4' />
               <p className='text-green-100 text-sm leading-relaxed'>
                 Beauty Beyond Boundaries - Where elegance in every strand comes alive! We create exceptional hair care products for your natural beauty.
               </p>
@@ -100,14 +100,14 @@ const Footer = () => {
               <div className="text-green-100 text-sm space-y-2 mt-4">
                 <p className='flex items-start'>
                   <span className='font-semibold text-white mr-2'>Email:</span>
-                  <a href='mailto:info@sarelcare.com' className='hover:text-white transition-colors'>
-                    info@sarelcare.com
+                  <a href='mailto:sarelholisticcare@gmail.com' className='hover:text-white transition-colors'>
+                    sarelholisticcare@gmail.com
                   </a>
                 </p>
                 <p className='flex items-start'>
                   <span className='font-semibold text-white mr-2'>Phone:</span>
-                  <a href='tel:+234XXXXXXXXXX' className='hover:text-white transition-colors'>
-                    +234 XXX XXX XXXX
+                  <a href='tel:+2348123788854' className='hover:text-white transition-colors'>
+                    +234 812 378 8854
                   </a>
                 </p>
               </div>
@@ -117,7 +117,7 @@ const Footer = () => {
               <h3 className='text-xl font-semibold mb-4 border-b border-green-600 pb-2 inline-block'>Follow Us</h3>
               <div className="flex items-center space-x-4 mt-4 text-gray-800">
                 <a
-                  href="https://wa.me/234XXXXXXXXXX"
+                  href="https://wa.me/2348123788854"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-teal-300 bg-opacity-20 hover:bg-opacity-30 p-3 rounded-full transition-all duration-300 hover:scale-110"
@@ -127,7 +127,7 @@ const Footer = () => {
                 </a>
 
                 <a
-                  href="https://instagram.com/sarelcare"
+                  href="https://www.instagram.com/sarel_holistic_care_shc"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-teal-300 bg-opacity-20 hover:bg-opacity-30 p-3 rounded-full transition-all duration-300 hover:scale-110"
@@ -137,7 +137,7 @@ const Footer = () => {
                 </a>
 
                 <a
-                  href="https://facebook.com/sarelcare"
+                  href="https://www.facebook.com/share/1FH92Undxm/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-teal-300 bg-opacity-20 hover:bg-opacity-30 p-3 rounded-full transition-all duration-300 hover:scale-110"
